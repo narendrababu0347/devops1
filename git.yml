@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: nginx
+    apt:
+     name: installed nginx
+     state: present
+    notify: start nginx

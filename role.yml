@@ -1,0 +1,6 @@
+---
+- name: this playbook install nginx
+  hosts: all
+  become: true
+  roles:
+    - narendra

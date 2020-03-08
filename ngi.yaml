@@ -1,0 +1,48 @@
+---
+- hosts: all
+  become: true
+  gather_facts: no
+  tasks:
+  - name: adduser
+    user:
+     name: narendra
+     password: na
+     group: sudo
+  - name: install nginx
+    apt:
+     name: nginx
+     state: present
+    notify: start nginx
+  - name: Replace line in file examples
+    lineinfile:
+     path: index.html
+     line: This is the title of the webpage
+     state: present
+
+  - name: changing the line of html
+    replace:
+     path: index.html
+     regexp: 'hi this is'
+     replace: hi this is narendra
+       
+  - name: deleting the line
+    lineinfile:
+     path: index.html
+     regexp: 'This is the title of the webpage'
+     state: absent
+  - name: copy a html file
+    fetch:
+     src: index.html
+     dest: /usr/share/nginx/html
+    notify: start nginx
+  - name: copy a file from root
+    copy:
+     src: index.html
+     dest: /usr/share/nginx/html/index.html
+    notify: start nginx
+
+  handlers:
+  - name: start nginx
+    service:
+     name: nginx
+     state: started

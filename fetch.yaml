@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: true
+  tasks:
+   - name: store file
+     fetch:
+       src: index.html
+       dest: /opt

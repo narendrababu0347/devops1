@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+   - name: copy a file
+     copy: 
+     src: root/ansible-hml.yml
+     dest: /root/data
+

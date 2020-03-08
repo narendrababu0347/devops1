@@ -1,0 +1,3 @@
+[submodule "devops1"]
+	path = devops1
+	url = https://github.com/narendrababu0347/devops1.git

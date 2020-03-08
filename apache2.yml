@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: true
+  gather_facts: yes
+
+  tasks:
+    - name: install nginx
+      apt-get:
+        name: nginx installed
+        state: installed
+      notify: nginx installed
+  handlers:
+    - name: start nginx
+      service:
+        name: nginx
+        state: started

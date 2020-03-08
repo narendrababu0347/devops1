@@ -1,0 +1,20 @@
+---
+- hosts: all
+  become: true
+  tasks: 
+  - name: install nginx
+    apt:
+     name: installed nginx
+     state: present
+     notify: nginx started
+  - name: copy a index.html 
+    fetch:
+     src: index.html
+     dest: /usr/share/nginx/html/index.html
+  handlers: 
+    service:
+     name: nginx started
+     state: started
+
+ 
+
